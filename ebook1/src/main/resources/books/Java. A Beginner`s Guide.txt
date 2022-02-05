@@ -1,0 +1,6 @@
+The purpose of this book is to teach you the fundamentals of Java programming. It uses a step-by-step approach complete 
+with numerous examples, self tests, and projects.It assumes no previous programming experience.The book starts with the 
+basics,such as how to compile and run a Java program. It then discusses the keywords, features, and constructs that 
+form the core of the Java language. You’ll also find coverage of some of Java’s most advanced features, including 
+multithreaded programming, generics, lambda expressions, and modules. An introduction to the fundamentals of Swing 
+concludes the book. By the time you finish, you will have a firm grasp of the essentials of Java programming...

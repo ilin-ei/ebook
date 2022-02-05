@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+	<title>Ebook Welcome Page</title>
+	
+	<link rel="stylesheet"
+		  th:href="@{/css/demo.css}" />
+	
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" 
+	integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+</head>
+
+<body>
+
+	<hr>
+		<h3>Ebook home page</h3>
+	<hr>
+	
+	<div>
+		User: <span sec:authentication="name"></span>
+		<br><br>
+		Role(s): <span sec:authentication="principal.authorities"></span>
+		<br><br>
+
+		<div th:if="${session.user}" >
+			<p th:text="'First name: ' + ${session.user.firstName} + ', Last name: ' + ${session.user.lastName} + ', Email: ' + ${session.user.email}"></p>
+		</div>		
+	</div>
+	
+	<a th:href="@{/books/list}"
+		class="btn btn-primary btn-sm mb-3">
+		Show all books
+	</a>
+	
+	<a th:href="@{/users/myBooks(username=${session.user.userName})}"
+		class="btn btn-primary btn-sm mb-3">
+		Show my books
+	</a>
+	
+	<div sec:authorize="hasRole('ROLE_admin')">
+	  
+		<a th:href="@{/users/list}"
+		class="btn btn-primary btn-sm mb-3">
+		Show all users
+		</a>
+		
+	</div>
+
+	<hr>
+
+		<form th:action="@{/logout}" method="POST">
+	
+		<input class="btn btn-outline-primary" type="submit" value="Logout"/>
+
+	</form>	
+			
+</body>
+
+</html>
