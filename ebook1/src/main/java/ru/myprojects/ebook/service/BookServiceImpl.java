@@ -36,13 +36,22 @@ public class BookServiceImpl implements BookService {
 		else {
 			throw new RuntimeException("Did not find book id - " + theId);
 		}
-		
 		return theBook;
 	}
 
 	@Override
 	public void save(Book theBook) {
+		List<Book> books = bookRepository.findAll();
+		int i=0;
+		for(Book b: books) {
+			
+			if (b.getTitle().equals(theBook.getTitle()) & b.getAuthor().equals(theBook.getAuthor())) {
+				i++;
+			}
+		}
+		if (i == 0) {
 		bookRepository.save(theBook);
+		}
 	}
 
 	@Override

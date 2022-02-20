@@ -20,5 +20,4 @@ public interface UserService extends UserDetailsService {
     
 	public void addReader(User theUser, Book theBook);
 	
-	public List<Book> showMyBooks(long theUserId);
 }

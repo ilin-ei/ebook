@@ -1,7 +1,5 @@
 package ru.myprojects.ebook.controller;
 
-import java.util.logging.Logger;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,13 +25,10 @@ public class RegistrationController {
     @Autowired
     private UserService userService;
 	
-    private Logger logger = Logger.getLogger(getClass().getName());
-    
 	@InitBinder
 	public void initBinder(WebDataBinder dataBinder) {
 		
 		StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
-		
 		dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
 	}	
 	
@@ -52,7 +47,6 @@ public class RegistrationController {
 				Model theModel) {
 		
 		String userName = theCrmUser.getUserName();
-		logger.info("Processing registration form for: " + userName);
 		
 		 if (theBindingResult.hasErrors()){
 			 return "registration-form";
@@ -63,14 +57,11 @@ public class RegistrationController {
         	theModel.addAttribute("crmUser", new CrmUser());
 			theModel.addAttribute("registrationError", "User name already exists.");
 
-			logger.warning("User name already exists.");
         	return "registration-form";
         }
         
         userService.save(theCrmUser);
-        
-        logger.info("Successfully created user: " + userName);
-        
+             
         return "registration-confirmation";		
 	}
 }

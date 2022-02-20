@@ -16,7 +16,6 @@ public class ReadBookController {
 public String read(@RequestParam("title") String theTitle, @RequestParam("author") String theAuthor,
 		Model theModel) throws IOException {
 	
-	String author = theAuthor;
 	String title = theTitle;
 	String choice = String.format("src/main/resources/books/%s.txt", title);
 

@@ -1,10 +1,14 @@
-to enter the application use:
+1) Execute ebook1.sql
 
-	paul-atreides as username and
-	password as password to authenticate as usual user,
+2) Run EBookApplication.java
+
+	to enter the application use:
+
+	"paul-atreides" as username and
+	"password" as password to authenticate as usual user,
 	
-	leto-ii as username and
-	password as password to authenticate as admin
+	"leto-ii" as username and
+	"password" as password to authenticate as admin
 	
 	or
 	

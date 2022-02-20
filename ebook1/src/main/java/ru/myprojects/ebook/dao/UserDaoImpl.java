@@ -71,14 +71,4 @@ public class UserDaoImpl implements UserDao {
 		currentSession.saveOrUpdate(theUser);
 	}
 	
-	@Override
-	public List<Book> showMyBooks(long theUserId) {
-		
-		Session currentSession = entityManager.unwrap(Session.class);
-		Query<Book> theQuery = currentSession.createQuery("from User u right join Book_user bu on u.id=bu.user_id"
-				+ " where u.id=:uId", Book.class);
-		List <Book> myBooks = theQuery.setParameter("uId", theUserId).getResultList();
-		
-		return myBooks;
-	}
 }

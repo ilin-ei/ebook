@@ -17,5 +17,4 @@ public interface UserDao {
     
 	public void addReader(User theUser, Book theBook);
 	
-	public List<Book> showMyBooks(long theUserId);
 }

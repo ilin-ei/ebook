@@ -89,10 +89,4 @@ public class UserServiceImpl implements UserService {
 	public void addReader(User theUser, Book theBook) {
 		userDao.addReader(theUser, theBook);
 	}
-	
-	@Override
-	@Transactional
-	public List<Book> showMyBooks(long theUserId) {
-		return userDao.showMyBooks(theUserId);
-	}
 }

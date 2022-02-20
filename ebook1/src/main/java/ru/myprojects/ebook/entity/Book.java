@@ -12,6 +12,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import ru.myprojects.ebook.validation.ValidBook;
 
 @Entity
 @Table(name="book")
@@ -22,10 +27,17 @@ public class Book {
 	@Column(name="id")
 	private int id;
 	
+	@ValidBook
 	@Column(name="title")
+	@NotBlank(message = "is required")
+	@Size(min = 2, message = "is required")
 	private String title;
 	
+	@ValidBook
+	@NotBlank(message = "is required")
+	@Size(min = 2, message = "is required")
 	@Column(name="author")
+	@Pattern(regexp = "^[A-Za-z ]{2,}$")
 	private String author;
 	
 	@ManyToMany(cascade = CascadeType.ALL)

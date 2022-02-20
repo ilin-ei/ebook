@@ -43,9 +43,11 @@ public class UserController {
 	
 	@GetMapping("/myBooks")
 	public String showMyBooks(@RequestParam("username") String theUsername, Model theModel) {
+		
 		User theUser = userService.findByUserName(theUsername);	
 		Set<Book> myBooks = theUser.getBooks();
 		theModel.addAttribute("books", myBooks);
+		
 		return "books/my-books";
 	}
 }

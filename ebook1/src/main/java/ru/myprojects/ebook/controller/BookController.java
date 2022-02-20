@@ -2,8 +2,11 @@ package ru.myprojects.ebook.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -58,7 +61,11 @@ public class BookController {
 	}
 		
 	@PostMapping("/save")
-	public String saveBook(@ModelAttribute("book") Book theBook) {
+	public String saveBook(@Valid @ModelAttribute("book") Book theBook, BindingResult theBindingResult) {
+		
+		 if (theBindingResult.hasErrors()){
+			 return "books/book-form";
+	        }
 		
 		int bookId = theBook.getId();
 		if(bookId == 0) {
@@ -70,11 +77,6 @@ public class BookController {
 		
 		Book oldBook = bookService.findById(bookId);
 		List<User> readers = oldBook.getReaders();
-//		for(User r: readers) {
-//			System.out.println(r);
-//		}
-//		System.out.println(bookId);
-		
 		theBook.setReaders(readers);
 		bookService.save(theBook);
 		
@@ -85,8 +87,12 @@ public class BookController {
 	@GetMapping("/delete")
 	public String delete(@RequestParam("bookId") int theId) {
 		
-		bookService.deleteById(theId);
-		
+		try {
+			bookService.deleteById(theId);
+		}
+		catch(Exception e) {
+			return "books/deleting-book";
+		}
 		return "redirect:/books/list";
 	}
 	
